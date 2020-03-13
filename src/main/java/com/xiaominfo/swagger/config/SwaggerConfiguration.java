@@ -86,33 +86,14 @@ public class SwaggerConfiguration {
                 .build();
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("swagger-bootstrap-ui-demo RESTful APIs")
-                .description("swagger-bootstrap-ui-demo RESTful APIs")
-                .termsOfServiceUrl("http://www.xx.com/")
-                .contact("xx@qq.com")
-                .version("1.0")
-                .build();
-    }
-
 
     private ApiKey apiKey() {
         return new ApiKey("BearerToken", "Authorization", "header");
-    }
-    private ApiKey apiKey1() {
-        return new ApiKey("BearerToken1", "Authorization-x", "header");
     }
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("/.*"))
-                .build();
-    }
-    private SecurityContext securityContext1() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth1())
                 .forPaths(PathSelectors.regex("/.*"))
                 .build();
     }
@@ -122,12 +103,6 @@ public class SwaggerConfiguration {
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
         return Lists.newArrayList(new SecurityReference("BearerToken", authorizationScopes));
-    }
-    List<SecurityReference> defaultAuth1() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Lists.newArrayList(new SecurityReference("BearerToken1", authorizationScopes));
     }
 
 }
