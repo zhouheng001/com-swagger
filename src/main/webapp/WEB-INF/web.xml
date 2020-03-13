@@ -78,6 +78,12 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>swaggerDemoMvc</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>swaggerDemoMvc</servlet-name>
     <url-pattern>*.htm</url-pattern>
