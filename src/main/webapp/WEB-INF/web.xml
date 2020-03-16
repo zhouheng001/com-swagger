@@ -54,11 +54,11 @@
     <!--用户名&密码-->
     <init-param>
       <param-name>userName</param-name>
-      <param-value>lisi</param-value>
+      <param-value>meme</param-value>
     </init-param>
     <init-param>
       <param-name>password</param-name>
-      <param-value>123</param-value>
+      <param-value>123456</param-value>
     </init-param>
   </filter>
   <filter-mapping>
