@@ -43,13 +43,6 @@ public class SwaggerConfiguration {
     @Bean(value = "defaultApi")
     public Docket defaultApi() {
 
-        ParameterBuilder parameterBuilder=new ParameterBuilder();
-        List<Parameter> parameters= Lists.newArrayList();
-        parameterBuilder.name("token").description("token令牌").modelRef(new ModelRef("String"))
-                .parameterType("header")
-                .required(true).build();
-        parameters.add(parameterBuilder.build());
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())
                 .groupName("rank")
@@ -58,19 +51,12 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage("com.xiaominfo.swagger.controller.ranks"))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                .build().globalOperationParameters(parameters)
+                .build()
                 .securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
     }
 
     @Bean(value = "activityApi")
     public Docket activityApi() {
-
-        ParameterBuilder parameterBuilder=new ParameterBuilder();
-        List<Parameter> parameters= Lists.newArrayList();
-        parameterBuilder.name("token").description("token令牌").modelRef(new ModelRef("String"))
-                .parameterType("header")
-                .required(true).build();
-        parameters.add(parameterBuilder.build());
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())
@@ -80,7 +66,7 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage("com.xiaominfo.swagger.controller.activity"))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                .build().globalOperationParameters(parameters)
+                .build()
                 .securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
     }
 
