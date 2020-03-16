@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.xiaominfo.swagger</groupId>
-  <artifactId>swagger-bootstrap-ui-demo-mvc</artifactId>
+  <artifactId>meme-swagger</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>swagger-bootstrap-ui-demo-mvc</name>
+  <name>meme-swagger</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
   <developers>
@@ -230,7 +230,7 @@
   </dependencies>
 
   <build>
-    <finalName>swagger-bootstrap-ui-demo-mvc</finalName>
+    <finalName>meme-swagger</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
