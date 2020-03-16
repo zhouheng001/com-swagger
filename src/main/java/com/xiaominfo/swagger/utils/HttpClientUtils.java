@@ -54,7 +54,7 @@ public class HttpClientUtils {
 		StringBuffer requestURL = request.getRequestURL();
 		Map<String, String> headers = HttpClientUtils.getHeaders(request);
 		Map<String, String> parameterMap = HttpClientUtils.getParameters(request);
-		String url = requestURL.toString().replaceAll("localhost:8080", "devtest.meme.chat");
+		String url = requestURL.toString().replaceAll("10.15.178.65:8091", "devtest.meme.chat");
 		HttpClientResult httpClientResult = null;
 		try {
 			httpClientResult = HttpClientUtils.doGet(url, headers, parameterMap);
@@ -75,7 +75,7 @@ public class HttpClientUtils {
 		StringBuffer requestURL = request.getRequestURL();
 		Map<String, String> headers = HttpClientUtils.getHeaders(request);
 		Map<String, String> parameterMap = HttpClientUtils.getParameters(request);
-		String url = requestURL.toString().replaceAll("localhost:8080", "devtest.meme.chat");
+		String url = requestURL.toString().replaceAll("10.15.178.65:8091", "devtest.meme.chat");
 		HttpClientResult httpClientResult = null;
 		try {
 			httpClientResult = HttpClientUtils.doPost(url, headers, parameterMap);
