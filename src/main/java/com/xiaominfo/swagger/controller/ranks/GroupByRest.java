@@ -3,12 +3,15 @@ package com.xiaominfo.swagger.controller.ranks;
 import com.funplus.base.utils.meme.RequestUtils;
 import com.funplus.base.utils.meme.ResponseJSON;
 import com.funplus.meme.base.web.aspect.NoMustSession;
+import com.xiaominfo.swagger.utils.HttpClientUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.fileupload.FileUploadException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 import static com.funplus.meme.base.web.aspect.JsonAspect.getUid;
@@ -22,6 +25,9 @@ import static com.funplus.meme.base.web.aspect.JsonAspect.getUid;
 @RestController
 @RequestMapping(value = "/rest/api/ranks/groupBy/")
 public class GroupByRest {
+
+    @Autowired
+    private HttpServletRequest request;
 
     @ApiOperation(value = "获取所有该活动相关排行榜单信息接口", httpMethod = "GET")
     @NoMustSession
@@ -37,8 +43,7 @@ public class GroupByRest {
             @RequestHeader(value = RequestUtils.HEADER_X_MEME_SESSION, required = false) String session
     )
             throws IOException, FileUploadException {
-        long uid = getUid(session);
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取该活动用户信息接口", httpMethod = "GET")
@@ -48,8 +53,6 @@ public class GroupByRest {
                                  @ApiParam(name = "seqId", value = "活动id", required = true) @RequestParam(value = "seqId", required = false, defaultValue = "0") long seqId,
                                  @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region)
             throws IOException, FileUploadException {
-        long uid = getUid(session);
-        ResponseJSON response = new ResponseJSON();
-        return response;
+        return HttpClientUtils.getResult(request);
     }
 }

@@ -2,10 +2,12 @@ package com.xiaominfo.swagger.controller.ranks;
 
 import com.funplus.base.utils.meme.RequestUtils;
 import com.funplus.base.utils.meme.ResponseJSON;
+import com.xiaominfo.swagger.utils.HttpClientUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.mapstruct.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,8 @@ import java.util.Map;
 @RequestMapping(value = "/rest/api/ranks")
 public class ChocolateRest {
 
+    @Autowired
+    private HttpServletRequest request;
 
     @ApiOperation(value = "获取所有该活动相关排行榜单信息", httpMethod = "GET")
     @RequestMapping(value = "/chocolate/rank", method = RequestMethod.GET)
@@ -36,7 +40,7 @@ public class ChocolateRest {
             @ApiParam(name = "seqId", value = "活动id", required = true) @RequestParam(value = "seqId", required = true) long seqId
 
     ) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取主播排名信息", httpMethod = "GET")
@@ -46,7 +50,7 @@ public class ChocolateRest {
             @ApiParam(name = "anchoruid", value = "anchoruid", required = true) @PathVariable("anchoruid") long anchorUid,
             @ApiParam(name = RequestUtils.HEADER_X_MEME_LANG, value = "语言", required = false, defaultValue = "zh-tw") @RequestHeader(value = RequestUtils.HEADER_X_MEME_LANG, required = false, defaultValue = "zh-tw") String lang
     ) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取该活动榜单结果", httpMethod = "GET")
@@ -59,7 +63,7 @@ public class ChocolateRest {
             @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region
     )
             throws IOException {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
 }

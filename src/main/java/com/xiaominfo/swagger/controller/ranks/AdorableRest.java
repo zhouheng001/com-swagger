@@ -5,10 +5,12 @@ import com.funplus.base.utils.meme.ResponseJSON;
 import com.funplus.meme.base.web.aspect.NoMustSession;
 import com.funplus.meme.base.web.aspect.NotSession;
 import com.xiaominfo.swagger.domain.resp.AdorableDate;
+import com.xiaominfo.swagger.utils.HttpClientUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.mapstruct.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +26,14 @@ import java.io.IOException;
 @RequestMapping("/rest/api/ranks")
 public class AdorableRest {
 
+    @Autowired
+    private HttpServletRequest request;
+
     @ApiOperation(value = "获取活动时间", httpMethod = "GET")
     @NotSession
     @RequestMapping(value = "/adorable/activityInfo", method = RequestMethod.GET)
     public ResponseJSON<AdorableDate> getActivityInfo(@ApiParam(name = "region", value = "时区", required = true) @RequestParam(value = "region", defaultValue = "Default") String region) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取所有该活动相关排行榜单信息", httpMethod = "GET")
@@ -42,7 +47,7 @@ public class AdorableRest {
                                       @ApiParam(name = "pos", value = "计算日榜 ( 日榜新手上路pos传1-7, 日榜实战演练pos传1-5， 日榜排位赛pos传1-2 ) ", defaultValue = "1") @RequestParam(value = "pos", defaultValue = "1") int pos,
                                       @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region,
                                       HttpServletRequest request) {
-       return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
 
@@ -51,7 +56,7 @@ public class AdorableRest {
     public ResponseJSON status(@ApiParam(name = "anchorId", value = "anchorId", required = true) @PathVariable("anchorId") long anchorId,
                                @ApiParam(name = "lang", value = "语言", required = false, defaultValue = "zh-tw")
                                @RequestHeader(value = RequestUtils.HEADER_X_MEME_LANG, required = false, defaultValue = "zh-tw") String lang) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取用户排名基础信息", httpMethod = "GET")
@@ -64,7 +69,7 @@ public class AdorableRest {
                                     @ApiParam(name = "type", value = "榜单类型 日榜 0 总榜 1", defaultValue = "0") @RequestParam(value = "type", defaultValue = "0") int type,
                                     @Context HttpServletRequest request)
             throws IOException {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
 }

@@ -5,6 +5,7 @@ import com.funplus.base.utils.meme.ResponseJSON;
 import com.funplus.meme.base.web.aspect.NoMustSession;
 import com.funplus.meme.base.web.aspect.WebUtils;
 import com.xiaominfo.swagger.domain.resp.GiftInfo;
+import com.xiaominfo.swagger.utils.HttpClientUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,9 +36,7 @@ public class JingShuoRest {
                                       @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region,
                                       @ApiParam(name = "seqId", value = "活动id", required = true) @RequestParam(value = "seqId") long seqId,
                                       @Context HttpServletRequest request) {
-        long uid = WebUtils.getUid(request);
-        ResponseJSON response = new ResponseJSON();
-        return response;
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "大富翁第二阶段抽奖接口", httpMethod = "GET")
@@ -47,9 +46,7 @@ public class JingShuoRest {
                                             @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region,
                                             @ApiParam(name = "seqId", value = "活动id", required = true) @RequestParam(value = "seqId", required = false, defaultValue = "0") long seqId,
                                             @Context HttpServletRequest request) {
-        long uid = WebUtils.getUid(request);
-        ResponseJSON response = new ResponseJSON();
-        return response;
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取该活动用户信息接口", httpMethod = "GET")
@@ -61,8 +58,7 @@ public class JingShuoRest {
                                     @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region,
                                     @Context HttpServletRequest request)
             throws IOException {
-        long fromUid = WebUtils.getUid(request);
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
 

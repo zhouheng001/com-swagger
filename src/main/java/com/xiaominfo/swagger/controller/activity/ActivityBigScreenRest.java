@@ -3,11 +3,14 @@ package com.xiaominfo.swagger.controller.activity;
 import com.funplus.base.utils.meme.ResponseJSON;
 import com.funplus.base.utils.meme.enumerations.ActivitySwitchEnum;
 import com.funplus.meme.activity.model.MemeRankConfigInfo;
+import com.xiaominfo.swagger.utils.HttpClientUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,18 +23,21 @@ import java.util.List;
 @RequestMapping("/rest/api/activity")
 public class ActivityBigScreenRest {
 
+    @Autowired
+    private HttpServletRequest request;
+
     @ApiOperation(value = "查询榜单", httpMethod = "GET")
     @RequestMapping(value = "/bigscreenlist/cms/selectlist")
     public ResponseJSON<List<MemeRankConfigInfo>> selectCmsScreenlist(@ApiParam(name = "type", value = "id",
             required = false) @RequestParam(value = "id", required = false, defaultValue = "0") long id) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
 
     }
 
     @ApiOperation(value = "新增榜单活动", httpMethod = "POST")
     @RequestMapping(value = "/bigscreenlist/cms/add", method = RequestMethod.POST)
     public ResponseJSON addCmsBigScreen(@RequestBody MemeRankConfigInfo memeRankConfigParam) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "开始结束榜单活动", httpMethod = "GET")
@@ -41,14 +47,14 @@ public class ActivityBigScreenRest {
                     required = true) ActivitySwitchEnum switchEnum,
             @ApiParam(name = "id", value = "活动id", required = true) @RequestParam(value = "id",
                     required = true) long id) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "删除榜单活动", httpMethod = "DELETE")
     @RequestMapping(value = "/bigscreenlist/cms/del", method = RequestMethod.DELETE)
     public ResponseJSON delCmsScreen(@ApiParam(name = "id", value = "活动id", required = true) @RequestParam(value = "id",
             required = true) long id) {
-        return ResponseJSON.OK;
+        return HttpClientUtils.getResult(request);
     }
 
 }

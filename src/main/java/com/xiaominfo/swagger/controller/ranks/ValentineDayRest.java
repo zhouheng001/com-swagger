@@ -2,11 +2,14 @@ package com.xiaominfo.swagger.controller.ranks;
 
 import com.funplus.base.utils.meme.RequestUtils;
 import com.funplus.base.utils.meme.ResponseJSON;
+import com.xiaominfo.swagger.utils.HttpClientUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +24,8 @@ import java.util.Map;
 @RequestMapping("/rest/api/ranks")
 public class ValentineDayRest {
 
+    @Autowired
+    private HttpServletRequest request;
 
     @ApiOperation(value = "获取所有该活动相关排行榜单信息", httpMethod = "GET")
     @RequestMapping(value = "/valentineday/rank", method = RequestMethod.GET)
@@ -31,9 +36,7 @@ public class ValentineDayRest {
                                       @ApiParam(name = "pos", value = "计算日榜", required = false) @RequestParam(value = "pos", defaultValue = "0") int pos,
                                       @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region,
                                       @ApiParam(name = "seqId", value = "活动id", required = true) @RequestParam(value = "seqId", required = true) long seqId) {
-        String uid = session.split(";")[0];
-        Map<String, Object> result = new HashMap<String, Object>();
-        return new ResponseJSON(result);
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取主播排名浮动信息用于运营位", httpMethod = "GET")
@@ -42,7 +45,7 @@ public class ValentineDayRest {
                                @ApiParam(name = "seqId", value = "活动id", required = true) @PathVariable(value = "seqId") long seqId,
                                @ApiParam(name = "lang", value = "语言", required = false, defaultValue = "zh-tw")
                                @RequestHeader(value = RequestUtils.HEADER_X_MEME_LANG, required = false, defaultValue = "zh-tw") String lang) {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取用户排名基础信息", httpMethod = "GET")
@@ -56,7 +59,7 @@ public class ValentineDayRest {
                                     @ApiParam(name = "pos", value = "计算日榜", defaultValue = "0") @RequestParam(value = "pos", defaultValue = "0") int pos)
             throws IOException {
 
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 
     @ApiOperation(value = "获取活动任务", httpMethod = "GET")
@@ -66,6 +69,6 @@ public class ValentineDayRest {
                                             @ApiParam(name = "seqId", value = "活动id",required = true) @RequestParam(value = "seqId", required = true) long seqId,
                                             @ApiParam(name = "region", value = "时区", defaultValue = "Default") @RequestParam(value = "region", defaultValue = "Default") String region)
             throws IOException {
-        return new ResponseJSON();
+        return HttpClientUtils.getResult(request);
     }
 }
